@@ -63,4 +63,32 @@ export class DriverController {
       });
     }
   }
+
+  static async retrieveDriver(req: Request, res: Response) {
+    try {
+      const { driverId } = req.params;
+
+      const driver = await DriverService.findOne({
+        where: { id: driverId },
+      });
+
+      return ResponseHandler.sendResponse(
+        res,
+        STATUS_CODES.OK,
+        true,
+        'Driver retrieved',
+        driver
+      );
+    } catch (error) {
+      const message =
+        'Something went wrong while attempting to retrieve the driver';
+
+      logger.error(`${message}: ${error.message}`);
+
+      return ResponseHandler.sendErrorResponse(res, {
+        message,
+        error: error.message,
+      });
+    }
+  }
 }

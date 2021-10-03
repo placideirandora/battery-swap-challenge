@@ -19,7 +19,8 @@ export const validate = (validations: ValidationChain[]) => {
       .array({ onlyFirstError: true })
       .map((err) => extractedErrors.push(err.msg));
 
-    const message = 'Oooops, Something went wrong, check the reason below';
+    const message = 'Oooops, something went wrong. Check the reason below.';
+
     return ResponseHandler.sendResponse(
       res,
       STATUS_CODES.BAD_REQUEST,

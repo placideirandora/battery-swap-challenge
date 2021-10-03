@@ -1,4 +1,6 @@
-import { body } from 'express-validator';
+import { body, param } from 'express-validator';
+
+import { DriverService } from './driver.service';
 
 export class DriverValidation {
   public static driverCreation = [
@@ -30,5 +32,23 @@ export class DriverValidation {
       .isString()
       .trim()
       .notEmpty(),
+  ];
+
+  public static driverId = [
+    param(
+      'driverId',
+      'driver parameter Id is required and must be a number'
+    ).isInt(),
+    param('driverId').custom(async (id) => {
+      const payment = await DriverService.findOne({ where: { id } });
+
+      if (!payment) {
+        return Promise.reject(
+          `Driver of the specified Id - ${id} - does not exist`
+        );
+      }
+
+      return true;
+    }),
   ];
 }

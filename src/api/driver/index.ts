@@ -13,3 +13,9 @@ driverRouter.post(
 );
 
 driverRouter.get('/', DriverController.retrieveDrivers);
+
+driverRouter.get(
+  '/:driverId',
+  validate(DriverValidation.driverId),
+  DriverController.retrieveDriver
+);
