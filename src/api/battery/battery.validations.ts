@@ -28,9 +28,9 @@ export class BatteryValidation {
       'battery parameter Id is required and must be a number'
     ).isInt(),
     param('batteryId').custom(async (id) => {
-      const payment = await BatteryService.findOne({ where: { id } });
+      const battery = await BatteryService.findOne({ where: { id } });
 
-      if (!payment) {
+      if (!battery) {
         return Promise.reject(
           `Battery of the specified Id - ${id} - does not exist`
         );

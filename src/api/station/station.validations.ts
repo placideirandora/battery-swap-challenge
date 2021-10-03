@@ -28,9 +28,9 @@ export class StationValidation {
       'station parameter Id is required and must be a number'
     ).isInt(),
     param('stationId').custom(async (id) => {
-      const payment = await StationService.findOne({ where: { id } });
+      const station = await StationService.findOne({ where: { id } });
 
-      if (!payment) {
+      if (!station) {
         return Promise.reject(
           `Station of the specified Id - ${id} - does not exist`
         );

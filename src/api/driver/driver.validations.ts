@@ -40,9 +40,9 @@ export class DriverValidation {
       'driver parameter Id is required and must be a number'
     ).isInt(),
     param('driverId').custom(async (id) => {
-      const payment = await DriverService.findOne({ where: { id } });
+      const driver = await DriverService.findOne({ where: { id } });
 
-      if (!payment) {
+      if (!driver) {
         return Promise.reject(
           `Driver of the specified Id - ${id} - does not exist`
         );
