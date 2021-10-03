@@ -11,3 +11,5 @@ driverRouter.post(
   validate(DriverValidation.driverCreation),
   DriverController.createDriver
 );
+
+driverRouter.get('/', DriverController.retrieveDrivers);
