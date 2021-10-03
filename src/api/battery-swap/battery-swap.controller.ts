@@ -7,8 +7,8 @@ import { STATUS_CODES } from '../../constants/status-code.constants';
 
 export class BatteryController {
   /*
-    We will charge a driver depending on how many kWh of battery they have used.
-    Let's assume to charge 1 USD per 1 kWh. If a battery has 40 kWh, the cost would be 40 USD.
+    We will charge a driver depending on how many kWh of battery they have consumed.
+    Let's assume to charge 0.5 USD per 1 kWh. If a battery has 40 kWh, the cost would be 20 USD.
   */
   static async createBatterySwap(req: Request, res: Response) {
     try {
@@ -16,7 +16,7 @@ export class BatteryController {
         ...req.body,
       });
 
-      batterySwap.dataValues.cost = `${Number(batterySwap.energyUsed) * 1.5} USD`;
+      batterySwap.dataValues.cost = `${Number(batterySwap.energyUsed) * 0.5} USD`;
 
       return ResponseHandler.sendResponse(
         res,
