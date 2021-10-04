@@ -31,7 +31,7 @@ Battery Swap for e-Station.
 
 ### SETUP THE SERVER
 
-You will have to download and install Postgres and Node.js.
+You will have to download and install Postgres, Node.js, and Yarn.
 
 - Start Postgres
 - Create a Database called `battery-swaps`
@@ -39,6 +39,7 @@ You will have to download and install Postgres and Node.js.
 - Create a `.env` file and specify the following environment variables: `NODE_ENV=development`
   `DATABASE_URL=postgres://{database user name}:{database user password}@localhost:5432/battery-swaps`
 - Install Dependencies: `yarn install`
+- Run Migrations: `yarn db:migrate`
 - Start the Server: `yarn dev`
 - You should now consume the first endpoint for creating a driver: `http://localhost:3000/api/v1/driver`
 - Refer to the above-mentioned endpoints to determine available endpoints. You will know which fields to provide via validations
